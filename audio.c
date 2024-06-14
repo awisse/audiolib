@@ -31,6 +31,14 @@
  
 #define LOOPS 1
 #define BUFSIZE 0x1000
+
+void usage() {
+  /* Print usage instructions */
+  puts("Usage: playsound [Options] [filename]");
+  puts("  --header: Print file header (.wav)");
+  exit(0);
+}
+
  
 int play(const char* filename, pa_simple* s, const pa_sample_spec ss) {
   int error;
@@ -127,3 +135,4 @@ finish:
  
   return ret;
 }
+
