@@ -35,7 +35,10 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  f = fopen(argv[optind], "r");
+  if (!(f = fopen(argv[optind], "r"))) {
+    fprintf(stderr, "Error while trying to open \"%s\"\n", argv[optind]);
+    return 1;
+  }
 
   if (get_wav_header(f, &hdr) == -1) {
     fprintf(stderr, ".wav header not recognized.");
