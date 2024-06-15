@@ -1,12 +1,20 @@
 LDLIBS=-lpulse -lpulse-simple
-RM=rm -f
-SOURCES=audio.c
-playsound: $(SOURCES)
-	$(CC) -o playsound $^ $(LDLIBS)
+CFLAGS=
+headers=audio.h
+sources=main.c audio.c
+
+all: playsound
+
+debug: CFLAGS += -g
+debug: playsound
+
+playsound: $(sources) $(headers)
+	$(CC) -o playsound $^ $(CFLAGS) $(LDLIBS)
 
 .PHONY : install
 install :
 	cp -p playsound $(HOME)/bin
+
 .PHONY : clean
 clean :
 	$(RM) playsound 
